@@ -21,14 +21,3 @@ module Api
     end 
   end 
 end 
-
-
-# const res = await fetch("/api/auth/me")
-# const account = await res.json()
-
-
-# before_action :require_auth!
-
-# def require_auth!
-#   render json: { error: "Unauthorized" }, status: :unauthorized unless current_account
-# end
