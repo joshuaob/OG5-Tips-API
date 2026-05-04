@@ -36,6 +36,7 @@ gem "thruster", require: false
 # gem "rack-cors"
 
 gem "rotp"
+gem 'resend', '~> 1.3'
 
 # AWS SDK (modular, only what you need)
 gem "aws-sdk-s3"
