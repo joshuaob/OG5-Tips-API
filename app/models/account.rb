@@ -1,4 +1,6 @@
 class Account < ApplicationRecord
+  INTERVAL_IN_MINUTES = 5.freeze
+
   before_validation :ensure_otp_secret, on: :create
   before_validation :normalize_email
   has_secure_token :auth_token
@@ -6,7 +8,7 @@ class Account < ApplicationRecord
   enum :role, { student: 0, admin: 1 }, default: :student
 
   def totp
-    ROTP::TOTP.new(otp_secret, interval: 300) # 5 min expiry
+    ROTP::TOTP.new(otp_secret, interval: (INTERVAL_IN_MINUTES * 60))
   end
 
   def generate_otp
