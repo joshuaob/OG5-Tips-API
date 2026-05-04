@@ -15,7 +15,8 @@ module Api
           code = account.generate_otp
 
           # send via email (or log for now)
-          Rails.logger.info("OTP for #{account.email}: #{code}")
+          # Rails.logger.info("OTP for #{account.email}: #{code}")
+          OtpMailer.send_otp(account:, code:).deliver_now
 
           render json: { success: true }
 
