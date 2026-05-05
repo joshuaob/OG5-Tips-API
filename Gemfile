@@ -35,6 +35,13 @@ gem "thruster", require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
+gem "rotp"
+gem 'resend', '~> 1.3'
+
+# AWS SDK (modular, only what you need)
+gem "aws-sdk-s3"
+gem "aws-sdk-polly"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -44,4 +51,8 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem 'pry', '~> 0.16.0'
+
+  # Environment variables
+  gem "dotenv-rails"
 end
