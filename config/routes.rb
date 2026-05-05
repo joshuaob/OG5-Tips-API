@@ -18,7 +18,10 @@ Rails.application.routes.draw do
         end
         get :me, to: "mes#show" 
         post :logout, to: "sessions#destroy"
-      end 
+      end
+      
+      resources :topics, only: [:create, :index]
+      resources :lessons, only: [:create, :index, :show]
     end
   end
 end
