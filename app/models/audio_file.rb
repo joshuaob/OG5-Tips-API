@@ -1,6 +1,7 @@
 # app/models/audio_file.rb
 class AudioFile < ApplicationRecord
-  belongs_to :lesson
+  belongs_to :lesson, dependent: :destroy
+  before_destroy :delete_audio_file
   
   enum :status, {
     pending: 0,
@@ -19,5 +20,10 @@ class AudioFile < ApplicationRecord
 
   def presigned_url
     Storage::S3Uploader.new.presigned_url(key: s3_key)
+  end
+  
+  def delete_audio_file
+    puts "Deleting audio file - #{s3_key}"
+    Storage::S3Uploader.new.delete(key: s3_key)
   end 
 end
