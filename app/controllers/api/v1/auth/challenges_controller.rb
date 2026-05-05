@@ -7,17 +7,12 @@ module Api
           account.first_name = challenge_params[:first_name]
           account.save!
           
-          
           unless account.can_send_otp?
             return render json: { error: "Too many requests" }, status: :too_many_requests
           end
 
           code = account.generate_otp
-
-          # send via email (or log for now)
-          # Rails.logger.info("OTP for #{account.email}: #{code}")
           OtpMailer.send_otp(account:, code:).deliver_now
-
           render json: { success: true }
 
         rescue ActiveRecord::RecordInvalid => e
